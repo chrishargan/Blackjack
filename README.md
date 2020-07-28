@@ -1,2 +1,0 @@
-# Blackjack
-blackjack in php

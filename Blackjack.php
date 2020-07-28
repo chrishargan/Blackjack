@@ -1,54 +1,71 @@
 <?php
 declare(strict_types=1);
 class Blackjack {
-    private string $player;
-    private string $dealer;
-    private string $deck;
+    private Player  $player;
+    private Player $dealer;
+    private Deck $deck;
 
-    /**
-     * @return string
-     */
-    public function getPlayer(): string
+
+    public function __construct()
+    {
+        $deck = new Deck();
+        $deck->shuffle();
+        $this->deck = $deck;
+        $this->player = new Player($deck);
+        $this->dealer = new Player($deck);
+
+    }
+
+    public function hitPlayer() : void
+    {
+
+        if($_SESSION['REQUEST_METHOD'] == "POST" and isset($_POST['Hit']))
+        {
+         $_SESSION['playerValue'] = $this->player->hit($this->deck);
+
+        }
+    }
+
+    public function playerStands(){
+    $this->getDealer()->hit();
+    }
+
+
+
+
+    public function getPlayer(): Player
     {
         return $this->player;
     }
 
-    /**
-     * @param string $player
-     */
-    public function setPlayer(string $player): void
+
+
+
+    public function setPlayer( Player $player): void
     {
         $this->player = $player;
     }
 
-    /**
-     * @return string
-     */
-    public function getDealer(): string
+
+    public function getDealer(): Player
     {
         return $this->dealer;
     }
 
-    /**
-     * @param string $dealer
-     */
-    public function setDealer(string $dealer): void
+
+    public function setDealer(Player $dealer): void
     {
         $this->dealer = $dealer;
     }
 
-    /**
-     * @return string
-     */
-    public function getDeck(): string
+
+    public function getDeck(): Deck
     {
         return $this->deck;
     }
 
-    /**
-     * @param string $deck
-     */
-    public function setDeck(string $deck): void
+
+    public function setDeck(Deck $deck): Deck
     {
         $this->deck = $deck;
     }
