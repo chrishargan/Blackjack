@@ -8,14 +8,18 @@
     <title>Document</title>
 </head>
 <body>
-<div class="gameTable" >
-    <?php  ?>
-    </div>
-    <form action="example.php" method="post">
-        <input type="submit" name="Hit" value="Hit"/>
-        <input type="submit" name="Stand" value="Stand"/>
-        <input type="submit" name="Surrender" value="Surrender"/>
-    </form>
+<div class="gameTable">
+    <?php ?>
+</div>
+<form action="example.php" method="post">
+    <input type="submit" name="NewGame" value="NewGame"/>
+    <input type="submit" name="Hit" value="Hit"/>
+    <input type="submit" name="Stand" value="Stand"/>
+    <input type="submit" name="Surrender" value="Surrender"/>
+</form>
+<div>
+
+</div>
 </body>
 </html>
 

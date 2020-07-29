@@ -1,8 +1,10 @@
 <?php
 declare(strict_types=1);
-class Blackjack {
+
+class Blackjack
+{
     private Player  $player;
-    private Player $dealer;
+    private Dealer $dealer;
     private Deck $deck;
 
 
@@ -12,25 +14,20 @@ class Blackjack {
         $deck->shuffle();
         $this->deck = $deck;
         $this->player = new Player($deck);
-        $this->dealer = new Player($deck);
+        $this->dealer = new Dealer($deck);
 
     }
 
-    public function hitPlayer() : void
+
+    public function stand()
     {
-
-        if($_SESSION['REQUEST_METHOD'] == "POST" and isset($_POST['Hit']))
-        {
-         $_SESSION['playerValue'] = $this->player->hit($this->deck);
-
+        $this->getDealer()->dealerHit($this);
+        if ($this->getDealer()->getScore()>$this->getPlayer()->getScore()){
+            $this->getPlayer()->hasLost();
+        } else {
+            $this->getDealer()->hasLost();
         }
     }
-
-    public function playerStands(){
-    $this->getDealer()->hit();
-    }
-
-
 
 
     public function getPlayer(): Player
@@ -39,9 +36,7 @@ class Blackjack {
     }
 
 
-
-
-    public function setPlayer( Player $player): void
+    public function setPlayer(Player $player): void
     {
         $this->player = $player;
     }
@@ -53,7 +48,7 @@ class Blackjack {
     }
 
 
-    public function setDealer(Player $dealer): void
+    public function setDealer(Dealer $dealer): void
     {
         $this->dealer = $dealer;
     }
@@ -65,7 +60,7 @@ class Blackjack {
     }
 
 
-    public function setDeck(Deck $deck): Deck
+    public function setDeck(Deck $deck): void
     {
         $this->deck = $deck;
     }

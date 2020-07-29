@@ -1,20 +1,18 @@
 <?php
 declare(strict_types=1);
 
-class Player {
+class Player
+{
 
-    private array $cards=[];
+    private array $cards = [];
     private bool $lost;
-
-
 
 
     public function __construct(Deck $deck)
     {
-
-        $this->cards[]=$deck->drawCard();
-        $this->cards[]=$deck->drawCard();
-
+        $this->cards[] = $deck->drawCard();
+        $this->cards[] = $deck->drawCard();
+        $this->lost = false;
     }
 
 
@@ -24,10 +22,6 @@ class Player {
     }
 
 
-    public function isLost(): bool
-    {
-        return $this->lost;
-    }
 
 
     public function setCards(array $cards): void
@@ -36,61 +30,57 @@ class Player {
     }
 
 
-    public function setLost(bool $lost): void
+    public function hit(Blackjack $newGame)
     {
-        $this->lost = $lost;
+        $newDeck = $newGame->getDeck();
+        $this->cards[] = $newDeck->drawCard();
+        $newGame->setDeck($newDeck);
 
-    }
-
-    public function hit(){
-
-        $this->cards[] = $_SESSION['currentGame']->getDeck()->drawCard();
-        if($_SESSION['currentGame']->getPlayer()->getScore() >= 21){
+        if ($this->getScore() > 21) {
             $this->hasLost();
         }
-
-    }
-
-    public function stand(){
-
-        $this->cards[] = $_SESSION['currentGame']->getDeck()->drawCard();
-        if($_SESSION['currentGame']->getdealer()->getScore() >= 21){
-            $this->hasLost();
-        }
-
     }
 
 
 
+    public function hasLost(): void
+    {
+        $this->lost= true;
+    }
+    public function isLost(): bool
+    {
+        return $this->lost;
+    }
 
-    public function surrender(){
+    public function surrender()
+    {
+        $this->hasLost();
 
     }
-    public function  getScore(){
-        $totalValue =0;
-        $cards = $_SESSION['currentGame']->getPlayer()->getCards();
-        foreach ($cards AS $card){
+
+    public function getScore()
+    {
+        $totalValue = 0;
+        $cards = $this->getCards();
+        foreach ($cards as $card) {
             $totalValue += $card->getValue();
-
         }
         return $totalValue;
     }
-    public function  getDealerScore(){
-        $totalValue =0;
-        $cards = $_SESSION['currentGame']->getDealer()->getCards();
-        foreach ($cards AS $card){
-            $totalValue += $card->getValue();
+}
 
+class Dealer extends Player
+{
+
+    public function dealerHit(Blackjack $newGame)
+    {
+
+        while ($this->getScore() < 15) {
+            parent::hit($newGame);
         }
-        return $totalValue;
+
     }
 
-
-    public function hasLost(){
-
-    $this->setLost( true);
-    echo "Better luck next time...";
-    session_destroy();
 }
 
-}
+
