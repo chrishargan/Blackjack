@@ -22,7 +22,7 @@ class Blackjack
     public function stand()
     {
         $this->getDealer()->dealerHit($this);
-        if ($this->getDealer()->getScore()>$this->getPlayer()->getScore()){
+        if ($this->getDealer()->getScore()>$this->getPlayer()->getScore() || $this->getDealer()->getScore() == $this->getPlayer()->getScore()){
             $this->getPlayer()->hasLost();
         } else {
             $this->getDealer()->hasLost();

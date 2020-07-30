@@ -31,17 +31,19 @@ if (isset($_POST['Surrender'])) {
 
 }
 
-echo "<div><h1><strong>Player</strong></h1> <br>";
+echo "<div><h1><strong>Player: ";
+    echo $_SESSION['currentGame']->getPlayer()->getScore() . "</strong></h1><br>";
 foreach ($_SESSION['currentGame']->getPlayer()->getCards() as $card) {
     echo $card->getUnicodeCharacter(true);
-    echo "<br>";
-
 }
+
+
 echo "</div>";
-echo "<div> <h1><strong>Dealer</strong></h1> <br>";
+echo "<div><h1><strong>Dealer: ";
+echo $_SESSION['currentGame']->getDealer()->getScore() . "</strong></h1><br>";
 foreach ($_SESSION['currentGame']->getDealer()->getCards() as $card) {
     echo $card->getUnicodeCharacter(true);
-    echo "<br>";
+
 
 }
 echo "</div>";
