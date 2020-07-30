@@ -23,16 +23,23 @@
             <input type="submit" name="NewGame" value="New Hand"/>
             <input type="submit" name="CashOut" value="Cash out"/>
         </form>
-    <div class="rectangle"></div>
-    <div class="rectangle"></div>
-    <div class="rectangle"></div>
-    <div class="rectangle"></div>
-    <div class="rectangle"></div>
-    <div class="rectangle"></div>
-    <div class="rectangle"></div>
-    <div class="rectangle"></div>
-    <div class="rectangle"></div>
-    <div class="rectangle"></div>
+    <div class="rectangle">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+   
 </div>
 </body>
 </html>
