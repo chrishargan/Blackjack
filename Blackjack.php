@@ -3,9 +3,11 @@ declare(strict_types=1);
 
 class Blackjack
 {
+
     private Player  $player;
     private Dealer $dealer;
     private Deck $deck;
+    public const thresholdScore = 21;
 
 
     public function __construct()
@@ -21,13 +23,17 @@ class Blackjack
 
     public function stand()
     {
+        $this->getPlayer()->setStands();
         $this->getDealer()->dealerHit($this);
-        if ($this->getDealer()->getScore()>$this->getPlayer()->getScore() || $this->getDealer()->getScore() == $this->getPlayer()->getScore()){
+        $playerScore = $this->getPlayer()->getScore();
+        $dealerScore = $this->getDealer()->getScore();
+        if (($dealerScore > $playerScore || $dealerScore == $playerScore) && $dealerScore < self::thresholdScore) {
             $this->getPlayer()->hasLost();
-        } else {
+        } elseif ($playerScore > $dealerScore && $playerScore < self::thresholdScore) {
             $this->getDealer()->hasLost();
         }
     }
+
 
 
     public function getPlayer(): Player
