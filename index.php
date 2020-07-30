@@ -14,8 +14,8 @@
 
 
 <div class="wrapper">
-    <div class="game">
-        <form action="example.php" method="post">
+
+        <form  action="example.php" method="post">
             <input type="text" name="bet" placeholder="Place your bets...">
             <input type="submit" name="Hit" value="Hit"/>
             <input type="submit" name="Stand" value="Stand"/>
@@ -23,17 +23,16 @@
             <input type="submit" name="NewGame" value="New Hand"/>
             <input type="submit" name="CashOut" value="Cash out"/>
         </form>
-    </div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
-    <div class="circle"></div>
+    <div class="rectangle"></div>
+    <div class="rectangle"></div>
+    <div class="rectangle"></div>
+    <div class="rectangle"></div>
+    <div class="rectangle"></div>
+    <div class="rectangle"></div>
+    <div class="rectangle"></div>
+    <div class="rectangle"></div>
+    <div class="rectangle"></div>
+    <div class="rectangle"></div>
 </div>
 </body>
 </html>

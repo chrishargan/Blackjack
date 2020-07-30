@@ -11,7 +11,7 @@ session_start();
 
 if (isset($_POST['CashOut'])) {
     echo "<h1>Thanks for playing </h1>";
-    echo " <h1> You leave the table with " . $_SESSION['chips'] . " Chips! </h1>";
+    echo " <h2> You have won " . $_SESSION['chips'] . " Chips! </h2>";
     session_destroy();
 }
 
@@ -45,7 +45,7 @@ if (isset($_POST['Hit']) && $_POST['bet'] !== null) {
     $_SESSION['currentGame']->getPlayer()->hit($_SESSION['currentGame']);
 } elseif (isset($_POST['Hit']) && $_POST['bet'] == null) {
 
-    echo "<h1>Please place your bet </h1>";
+    echo "<h2>Please place your bet </h2>";
 }
 
 
@@ -88,18 +88,18 @@ if ($_SESSION['currentGame']->getPlayer()->isStands() == true) {
 echo "</div>";
 
 if ($_SESSION['currentGame']->getPlayer()->isLost() == true) {
-    echo "<h1><strong>The house wins this time...</strong></h1>";
+    echo "<h2><strong>The house wins this time...</strong></h2>";
     if ($_SESSION['chips'] != 0) {
         unset($_SESSION['currentGame']);
         unset($_SESSION['bet']);
     } else {
-        echo "<h1> You have run out of chips </h1>";
+        echo "<h2> You have run out of chips </h2>";
         session_destroy();
     }
 }
 
 if ($_SESSION['currentGame']->getDealer()->isLost() == true && $_SESSION['currentGame']->getPlayer()->isLost() == false) {
-    echo "<h1><strong>You are a Winner!</strong></h1>";
+    echo "<h2><strong>You are a Winner!</strong></h2>";
     $_SESSION['chips'] += ($_SESSION['bet'] * 2);
     unset($_SESSION['currentGame']);
     unset($_SESSION['bet']);
